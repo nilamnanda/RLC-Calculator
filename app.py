@@ -3,8 +3,8 @@ from rlc_utils import hitung_rangkaian
 
 st.set_page_config(page_title="RLC Circuit Analyzer", page_icon="🔌", layout="centered")
 
-st.title("🔌 RLC Circuit Analyzer")
-st.markdown("Masukkan nilai-nilai komponen di bawah ini:")
+st.title("🔌 RLC Calculator")
+st.markdown("Masukkan nilai RLC di bawah ini:")
 
 # Input
 R = st.number_input("Hambatan (R) dalam Ohm", value=4.0)
