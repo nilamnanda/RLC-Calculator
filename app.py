@@ -1,7 +1,7 @@
 import streamlit as st
 from rlc_utils import hitung_rangkaian
 
-st.set_page_config(page_title="RLC Circuit Analyzer", page_icon="🔌", layout="centered")
+st.set_page_config(page_title="RLC Calculator", page_icon="🔌", layout="centered")
 
 st.title("🔌 RLC Calculator")
 st.markdown("Masukkan nilai RLC di bawah ini:")
