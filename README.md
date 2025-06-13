@@ -1,5 +1,4 @@
-# 🔌 RLC Circuit Analyzer
-
+# 🔌 RLC Calculator
 Aplikasi ini menghitung dan menganalisis rangkaian RLC seri berdasarkan nilai R, L, dan C yang anda masukkan. 
 
 ## 🎯 Fitur
