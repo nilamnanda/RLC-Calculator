@@ -1,11 +1,10 @@
 # 🔌 RLC Circuit Analyzer
 
-Aplikasi ini menghitung dan menganalisis rangkaian RLC seri berdasarkan nilai R, L, dan C yang kamu masukkan. Dibuat menggunakan Python dan Streamlit.
+Aplikasi ini menghitung dan menganalisis rangkaian RLC seri berdasarkan nilai R, L, dan C yang anda masukkan. 
 
 ## 🎯 Fitur
 - Hitung semua parameter utama: impedansi, arus, daya aktif/reaktif/semu
 - Deteksi sifat fasa: Lagging, Leading, atau Netral
-- Antarmuka berwarna yang sederhana dan interaktif
 
 ## 🚀 Cara Menjalankan
 ```bash
