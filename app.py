@@ -46,34 +46,30 @@ if st.button("Hitung"):
 else:
     st.info("Masukkan nilai dan tekan tombol **Hitung**.")
 
-    # Grafik Segitiga Daya
-    st.markdown("## 📈 Segitiga Daya")
+   # Grafik Segitiga Daya
+st.markdown("## 📈 Segitiga Daya")
 
-    # Ambil nilai P, Q, dan S
-    P = hasil['P']
-    Q = hasil['Q']
-    S = hasil['S']
+# Ambil nilai P, Q, dan S
+P = hasil['P']
+Q = hasil['Q']
+S = hasil['S']
 
-    fig, ax = plt.subplots(figsize=(5, 4))
+fig, ax = plt.subplots(figsize=(5, 4))
 
-    # Buat segitiga daya
-    ax.arrow(0, 0, P, 0, head_width=10, head_length=5, fc='blue', ec='blue')
-    ax.arrow(P, 0, 0, Q, head_width=10, head_length=5, fc='green', ec='green')
-    ax.arrow(0, 0, P, Q, head_width=10, head_length=5, fc='orange', ec='orange')
+# Buat segitiga daya
+ax.arrow(0, 0, P, 0, head_width=10, head_length=5, fc='blue', ec='blue')
+ax.arrow(P, 0, 0, Q, head_width=10, head_length=5, fc='green', ec='green')
+ax.arrow(0, 0, P, Q, head_width=10, head_length=5, fc='orange', ec='orange')
 
-    # Tambahkan label ke sisi-sisinya
-    ax.text(P/2, -20, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
-    ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
-    ax.text(P/2, Q/2 + 20, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
+# Tambahkan label
+ax.text(P/2, -20, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
+ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
+ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
 
-    ax.set_xlim(0, P + 100)
-    ax.set_ylim(0, Q + 100)
-    ax.set_xlabel("Real Power (W)")
-    ax.set_ylabel("Reactive Power (VAR)")
-    ax.set_title("Segitiga Daya (Power Triangle)")
-    ax.grid(True)
-    ax.set_aspect('equal')
+# Pengaturan tampilan
+ax.set_xlim(0, P + 50)
+ax.set_ylim(0, Q + 50)
+ax.set_aspect('equal')
+ax.axis('off')
 
-    st.pyplot(fig)
-
-
+st.pyplot(fig)
