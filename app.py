@@ -1,5 +1,8 @@
 import streamlit as st
 from rlc_utils import hitung_rangkaian
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 st.set_page_config(page_title="RLC Calculator", page_icon="🔌", layout="centered")
 
