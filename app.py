@@ -47,29 +47,33 @@ else:
     st.info("Masukkan nilai dan tekan tombol **Hitung**.")
 
    # Grafik Segitiga Daya
-st.markdown("## 📈 Segitiga Daya")
+if st.button("Hitung"):
+    hasil = hitung_rangkaian(R, L, C)
 
-# Ambil nilai P, Q, dan S
-P = hasil['P']
-Q = hasil['Q']
-S = hasil['S']
+    # Tampilkan hasil perhitungan
+    st.markdown("---")
+    # ... kode markdown hasil ...
 
-fig, ax = plt.subplots(figsize=(5, 4))
+    # ========== TAMBAHKAN DI SINI ==========
+    # Grafik Segitiga Daya
+    st.markdown("## 📈 Segitiga Daya")
 
-# Buat segitiga daya
-ax.arrow(0, 0, P, 0, head_width=10, head_length=5, fc='blue', ec='blue')
-ax.arrow(P, 0, 0, Q, head_width=10, head_length=5, fc='green', ec='green')
-ax.arrow(0, 0, P, Q, head_width=10, head_length=5, fc='orange', ec='orange')
+    P = hasil['P']
+    Q = hasil['Q']
+    S = hasil['S']
 
-# Tambahkan label
-ax.text(P/2, -20, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
-ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
-ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
+    fig, ax = plt.subplots(figsize=(5, 4))
+    ax.arrow(0, 0, P, 0, head_width=10, head_length=5, fc='blue', ec='blue')
+    ax.arrow(P, 0, 0, Q, head_width=10, head_length=5, fc='green', ec='green')
+    ax.arrow(0, 0, P, Q, head_width=10, head_length=5, fc='orange', ec='orange')
 
-# Pengaturan tampilan
-ax.set_xlim(0, P + 50)
-ax.set_ylim(0, Q + 50)
-ax.set_aspect('equal')
-ax.axis('off')
+    ax.text(P/2, -20, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
+    ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
+    ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
 
-st.pyplot(fig)
+    ax.set_xlim(0, P + 50)
+    ax.set_ylim(0, Q + 50)
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+    st.pyplot(fig)
