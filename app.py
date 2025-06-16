@@ -1,11 +1,25 @@
+import streamlit as st
+from rlc_utils import hitung_rangkaian
+import matplotlib.pyplot as plt
+import numpy as np
+
+st.set_page_config(page_title="RLC Calculator", page_icon="🔌", layout="centered")
+
+st.title("🔌 RLC Calculator")
+st.markdown("Masukkan nilai RLC di bawah ini:")
+
+# Input
+R = st.number_input("Hambatan (R) dalam Ohm", value=4.0)
+L = st.number_input("Induktansi (L) dalam Henry", value=0.2)
+C = st.number_input("Kapasitansi (C) dalam Farad", value=0.0001)
+
+# Tombol hitung (HANYA SATU)
 if st.button("Hitung"):
     hasil = hitung_rangkaian(R, L, C)
 
-    # Tampilkan hasil perhitungan
+    # Tampilkan hasil
     st.markdown("---")
-    st.markdown("""
-    <h3 style='color:#BB86FC;'>⚙️ Hasil Perhitungan:</h3>
-    """, unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#BB86FC;'>⚙️ Hasil Perhitungan:</h3>", unsafe_allow_html=True)
 
     def format_hasil(label, value, satuan=""):
         return f"<span style='color:#80D8FF;'><b>{label}</b> = {value} {satuan}</span>"
@@ -21,12 +35,13 @@ if st.button("Hitung"):
     st.markdown(format_hasil("Q (Daya Reaktif)", f"{hasil['Q']:.2f}", "VAR"), unsafe_allow_html=True)
     st.markdown(format_hasil("S (Daya Semu)", f"{hasil['S']:.2f}", "VA"), unsafe_allow_html=True)
 
+    # Styling sifat fasa
     st.markdown(
         f"<div style='background-color:#2A003F; padding:10px; border-radius:10px;'><h4 style='color:#FF69B4;'>Sifat Fasa: {hasil['sifat']}</h4></div>",
         unsafe_allow_html=True
     )
 
-    # ===== Grafik Segitiga Daya =====
+    # ====================== Grafik Segitiga Daya ======================
     st.markdown("## 📈 Segitiga Daya")
 
     P = hasil['P']
@@ -48,3 +63,6 @@ if st.button("Hitung"):
     ax.axis('off')
 
     st.pyplot(fig)
+
+else:
+    st.info("Masukkan nilai dan tekan tombol **Hitung**.")
