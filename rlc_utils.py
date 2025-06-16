@@ -1,37 +1,29 @@
-import math
+if st.button("Hitung"):
+    hasil = hitung_rangkaian(R, L, C)
 
-def hitung_rangkaian(R, L, C, f=50, V=200):
-    pi = math.pi
-    omega = 2 * pi * f
-    X_L = omega * L
-    X_C = 1 / (omega * C)
-    Z = math.sqrt(R**2 + (X_L - X_C)**2)
-    I = V / Z
-    cos_phi = R / Z
-    phi_rad = math.acos(cos_phi)
-    phi_deg = math.degrees(phi_rad)
-    sin_phi = math.sin(phi_rad)
-    P = V * I * cos_phi
-    Q = V * I * sin_phi
-    S = math.sqrt(P**2 + Q**2)
+    # (bagian menampilkan hasil perhitungan di sini...)
 
-    if X_L > X_C:
-        sifat = "Lagging (Induktif)"
-    elif X_C > X_L:
-        sifat = "Leading (Kapasitif)"
-    else:
-        sifat = "Netral (Resonansi)"
+    # ⬇⬇⬇ Tambahkan ini di bagian bawah ⬇⬇⬇
+    st.subheader("📈 Segitiga Daya")
 
-    return {
-        "omega": omega,
-        "X_L": X_L,
-        "X_C": X_C,
-        "Z": Z,
-        "I": I,
-        "cos_phi": cos_phi,
-        "phi_deg": phi_deg,
-        "P": P,
-        "Q": Q,
-        "S": S,
-        "sifat": sifat
-    }
+    P = hasil["P"]
+    Q = hasil["Q"]
+    S = hasil["S"]
+
+    fig, ax = plt.subplots()
+    ax.arrow(0, 0, P, 0, head_width=5, head_length=5, fc='blue', ec='blue')
+    ax.arrow(0, 0, 0, Q, head_width=5, head_length=5, fc='green', ec='green')
+    ax.arrow(0, 0, P, Q, head_width=5, head_length=5, fc='orange', ec='orange')
+
+    ax.text(P/2, -10, f"P = {P:.2f} W", color='blue')
+    ax.text(-30, Q/2, f"Q = {Q:.2f} VAR", color='green')
+    ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange')
+
+    ax.set_xlim(0, P + 50)
+    ax.set_ylim(0, Q + 50)
+    ax.set_xlabel("Daya Aktif (W)")
+    ax.set_ylabel("Daya Reaktif (VAR)")
+    ax.set_title("Segitiga Daya (P-Q-S)")
+    ax.grid(True)
+
+    st.pyplot(fig)
