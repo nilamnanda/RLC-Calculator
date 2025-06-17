@@ -47,22 +47,23 @@ if st.button("Hitung"):
     P = hasil['P']
     Q = hasil['Q']
     S = hasil['S']
+fig, ax = plt.subplots(figsize=(5, 4))
 
-    fig, ax = plt.subplots(figsize=(5, 4))
-    ax.arrow(0, 0, P, 0, head_width=10, head_length=5, fc='blue', ec='blue')
-    ax.arrow(P, 0, 0, Q, head_width=10, head_length=5, fc='green', ec='green')
-    ax.arrow(0, 0, P, Q, head_width=10, head_length=5, fc='orange', ec='orange')
+ax.annotate("", xy=(P, 0), xytext=(0, 0), arrowprops=dict(arrowstyle="->", color='blue', lw=2))
+ax.annotate("", xy=(P, Q), xytext=(P, 0), arrowprops=dict(arrowstyle="->", color='green', lw=2))
+ax.annotate("", xy=(P, Q), xytext=(0, 0), arrowprops=dict(arrowstyle="->", color='orange', lw=2))
 
-    ax.text(P/2, -20, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
-    ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
-    ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
+ax.text(P/2, -10, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
+ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
+ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
 
-    ax.set_xlim(0, P + 50)
-    ax.set_ylim(0, Q + 50)
-    ax.set_aspect('equal')
-    ax.axis('off')
+ax.set_xlim(0, P + 50)
+ax.set_ylim(0, Q + 50)
+ax.set_aspect('equal')
+ax.axis('off')
 
-    st.pyplot(fig)
+st.pyplot(fig)
+
 
 else:
     st.info("Masukkan nilai dan tekan tombol **Hitung**.")
