@@ -17,7 +17,7 @@ C = st.number_input("Kapasitansi (C) dalam Farad", value=0.0001)
 if st.button("Hitung"):
     hasil = hitung_rangkaian(R, L, C)
 
-    # Tampilkan hasil
+    # Tampilkan hasil perhitungan
     st.markdown("---")
     st.markdown("<h3 style='color:#BB86FC;'>⚙️ Hasil Perhitungan:</h3>", unsafe_allow_html=True)
 
@@ -35,35 +35,32 @@ if st.button("Hitung"):
     st.markdown(format_hasil("Q (Daya Reaktif)", f"{hasil['Q']:.2f}", "VAR"), unsafe_allow_html=True)
     st.markdown(format_hasil("S (Daya Semu)", f"{hasil['S']:.2f}", "VA"), unsafe_allow_html=True)
 
-    # Styling sifat fasa
     st.markdown(
         f"<div style='background-color:#2A003F; padding:10px; border-radius:10px;'><h4 style='color:#FF69B4;'>Sifat Fasa: {hasil['sifat']}</h4></div>",
         unsafe_allow_html=True
     )
 
-    # ====================== Grafik Segitiga Daya ======================
+    # Gambar segitiga daya
     st.markdown("## 📈 Segitiga Daya")
 
     P = hasil['P']
     Q = hasil['Q']
     S = hasil['S']
-fig, ax = plt.subplots(figsize=(5, 4))
 
-ax.annotate("", xy=(P, 0), xytext=(0, 0), arrowprops=dict(arrowstyle="->", color='blue', lw=2))
-ax.annotate("", xy=(P, Q), xytext=(P, 0), arrowprops=dict(arrowstyle="->", color='green', lw=2))
-ax.annotate("", xy=(P, Q), xytext=(0, 0), arrowprops=dict(arrowstyle="->", color='orange', lw=2))
+    fig, ax = plt.subplots(figsize=(5, 4))
+    ax.annotate("", xy=(P, 0), xytext=(0, 0), arrowprops=dict(arrowstyle="->", color='blue', lw=2))
+    ax.annotate("", xy=(P, Q), xytext=(P, 0), arrowprops=dict(arrowstyle="->", color='green', lw=2))
+    ax.annotate("", xy=(P, Q), xytext=(0, 0), arrowprops=dict(arrowstyle="->", color='orange', lw=2))
 
-ax.text(P/2, -10, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
-ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
-ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
+    ax.text(P/2, -10, f"P = {P:.2f} W", color='blue', fontsize=10, ha='center')
+    ax.text(P + 10, Q/2, f"Q = {Q:.2f} VAR", color='green', fontsize=10)
+    ax.text(P/2, Q/2, f"S = {S:.2f} VA", color='orange', fontsize=10, ha='center')
 
-ax.set_xlim(0, P + 50)
-ax.set_ylim(0, Q + 50)
-ax.set_aspect('equal')
-ax.axis('off')
-
-st.pyplot(fig)
-
+    ax.set_xlim(0, P + 50)
+    ax.set_ylim(0, Q + 50)
+    ax.set_aspect('equal')
+    ax.axis('off')
+    st.pyplot(fig)
 
 else:
     st.info("Masukkan nilai dan tekan tombol **Hitung**.")
